@@ -2,10 +2,10 @@
 import SideMenu from '../components/Sidebar/SideMenu';
 import Header from '../components/header/Header';
 import Footer from '../components/Footer/Footer';
-import DashBoard from '../pages/modulos/inicio/Dashboard';
-import CadastrarFolga from '../pages/modulos/folgas/cadastro';
-import CadastrarServidor from '../pages/modulos/servidores/cadastrarServidor';
-import ConsultarServidor from '../pages/modulos/servidores/consultaServidor';
+import DashBoard from '../pages/Modulos/inicio/Dashboard';
+import CadastrarFolga from '../pages/Modulos/folgas/cadastro';
+import CadastrarServidor from '../pages/Modulos/servidores/cadastrarServidor';
+import ConsultarServidor from '../pages/Modulos/servidores/consultaServidor';
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useState } from 'react';
