@@ -9,9 +9,8 @@ export default props=>{
             <tr>
                 <td>{servidor.nome}</td>
                 <td>{servidor.cargo}</td>
-                <td>{servidor.cpf}</td>
-
                 <td>{servidor.matricula}</td>
+                <td>{servidor.cpf}</td>
                 <td>
                     <button type="button" 
                     className="btn btn-primary"
