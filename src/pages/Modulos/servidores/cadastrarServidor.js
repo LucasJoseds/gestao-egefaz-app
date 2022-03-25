@@ -76,23 +76,14 @@ class CadastrarServidor extends React.Component {
 
         }
         
-        if (!this.state.matricula) {
-
-            msg.push('A matricula deve ser informada')
-
-        }
-        
+       
         if (!this.state.sexo) {
 
             msg.push('O sexo deve ser informado')
 
         }
         
-        if (!this.state.naturalidade) {
-
-            msg.push('O cpf deve ser informado')
-
-        }
+      
     
 
         return msg;
