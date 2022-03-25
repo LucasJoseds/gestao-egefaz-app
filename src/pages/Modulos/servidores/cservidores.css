@@ -1,0 +1,11 @@
+#mostrar:checked ~ #mostrarC{
+    display:block;
+}
+#mostrarC{
+    display:none;
+}
+.teste{
+
+    display: flex;
+    
+}

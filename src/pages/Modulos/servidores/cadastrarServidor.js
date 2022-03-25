@@ -8,6 +8,7 @@ import FormGroup from "../../../components/form-group";
 import ServidorService from "../../../app/service/servidorService";
 import "../modulos.css"
 import SelectMenu from '../../../components/selectMenu';
+import "./cservidores.css"
 
 
 class CadastrarServidor extends React.Component {
@@ -34,8 +35,10 @@ class CadastrarServidor extends React.Component {
         senha: '',
         naturalidade: '',
         nacionalidade: '',
+        cidade:'',
         email: '',
-        telefone: ''
+        telefone: '',
+        cargoComissao: ''
 
     }
 
@@ -64,34 +67,43 @@ class CadastrarServidor extends React.Component {
 
         const msg = []
 
-        
+
         if (!this.state.nome) {
 
             msg.push('O nome deve ser informado')
         }
-        
+
         if (!this.state.cpf) {
 
             msg.push('O cpf deve ser informado')
 
         }
-        
-       
+
+        if (!this.state.matricula) {
+
+            msg.push('A matricula deve ser informada')
+
+        }
+
         if (!this.state.sexo) {
 
             msg.push('O sexo deve ser informado')
 
         }
-        
-      
-    
+
+        if (!this.state.naturalidade) {
+
+            msg.push('O cpf deve ser informado')
+
+        }
+
 
         return msg;
     }
 
-    
-    
-    
+
+
+
 
 
     cadastrar = () => {
@@ -126,11 +138,12 @@ class CadastrarServidor extends React.Component {
             sexo: this.state.sexo,
             civil: this.state.civil,
             telefone: this.state.telefone,
+            cargoComissao: this.state.cargoComissao
 
         }
-        
 
-        
+
+
         this.service.cadastrar(servidor)
             .then(response => {
                 succesMessage('Cadastro realizado!')
@@ -155,18 +168,19 @@ class CadastrarServidor extends React.Component {
                     senha: '',
                     naturalidade: '',
                     nacionalidade: '',
+                    cidade:'',
                     email: '',
                     telefone: ''
                 })
             }).catch(
                 response => { errorMessage('Erro ao relizar o cadastro') }
-                )
-                
+            )
+
     }
-    
+
     render() {
-        
-       
+
+
         const uf = [
             { label: "", value: "" },
             { label: "AC", value: "AC" },
@@ -204,6 +218,12 @@ class CadastrarServidor extends React.Component {
             { label: "Feminino", value: "FEMININO" },
             { label: "Outros", value: "OUTROS" }
         ]
+        const lotacao = [
+            { label: "", value: "" },
+            { label: "Diretoria da  Escola Fazendária", value: "Diretoria da  Escola Fazendária" },
+            { label: "Gerência de administração e logística", value: "Gerência de administração e logística" },
+            { label: "Gerência de programação, capacitação e educação", value: "Gerência de programação, capacitação e educação" }
+        ]
         const estadoCivil = [
             { label: "", value: "" },
             { label: "Solteiro(a)", value: "Solteiro(a)" },
@@ -231,29 +251,32 @@ class CadastrarServidor extends React.Component {
                                             id="inputText"
                                             placeholder="Nome completo"
                                             value={this.state.nome}
-                                            onChange={(e) => this.setState({ nome: e.target.value })}/>
+                                            onChange={(e) => this.setState({ nome: e.target.value })} />
 
                                     </div>
 
-                                    <div className="form-group col-md-3">
-                                        <label className='la' for="inputPassword4">CPF*</label>
-                                        <InputMask type="text" className="form-control" mask='999.999.999-99' placeholder="CPF"
-                                            value={this.state.cpf}
-                                            onChange={(e) => this.setState({ cpf: e.target.value })} />
-                                    </div>
-                                    <div className="form-group col-md-3">
-                                        <label className='la' for="inputPassword4">Órgão Exp*</label>
-                                        <input type="text" className="form-control" placeholder="Orgão do expedidor"
-                                            value={this.state.orgao}
-                                            onChange={(e) => this.setState({ orgao: e.target.value })} />
+                                    <div className="form-group col-md-6">
+                                        <label className='la' for="inputEstado">Lotação*</label>
+                                        <SelectMenu
+                                            className="form-control"
+                                            id="inputLotacao"
+                                            value={this.state.lotacao}
+                                            onChange={(e) => this.setState({ lotacao: e.target.value })}
+                                            lista={lotacao} />
                                     </div>
                                     <div className="form-group col-md-6">
                                         <label className='la' htmlFor="validationDefault01">Matrícula</label>
                                         <input type="text" className="form-control" id="validationDefault01" placeholder="Matrícula"
                                             value={this.state.matricula}
-                                            onChange={(e) => this.setState({ matricula: e.target.value })}  aria-describedby="inputGroupPrepend2"  required />
+                                            onChange={(e) => this.setState({ matricula: e.target.value })} aria-describedby="inputGroupPrepend2" required />
 
-                                 
+
+                                    </div>
+                                    <div className="form-group col-md-6">
+                                        <label className='la' for="inputPassword4">CPF*</label>
+                                        <InputMask type="text" className="form-control" mask='999.999.999-99' placeholder="CPF"
+                                            value={this.state.cpf}
+                                            onChange={(e) => this.setState({ cpf: e.target.value })} />
                                     </div>
                                     <div className="form-group col-md-6">
                                         <label className='la' for="inputPassword4">Cargo*</label>
@@ -261,19 +284,20 @@ class CadastrarServidor extends React.Component {
                                             value={this.state.cargo}
                                             onChange={(e) => this.setState({ cargo: e.target.value })} />
                                     </div>
-                                    <div className="form-group col-md-6">
-                                        <label className='la' for="inputPassword4">Lotação*</label>
-                                        <input type="text" className="form-control" id="inputText" placeholder="Lotação"
-                                            value={this.state.lotacao}
-                                            onChange={(e) => this.setState({ lotacao: e.target.value })} />
-                                    </div>
+
                                     <div className="form-group col-md-3">
                                         <label className='la' for="inputPassword4">RG*</label>
                                         <input type="text" className="form-control" id="inputText" placeholder="RG"
                                             value={this.state.identidade}
                                             onChange={(e) => this.setState({ identidade: e.target.value })} />
                                     </div>
-                                    <div className="form-group col-md-3">
+                                    <div className="form-group col-md-2">
+                                        <label className='la' for="inputPassword4">OE*</label>
+                                        <input type="text" className="form-control" placeholder="Orgão do expedidor"
+                                            value={this.state.orgao}
+                                            onChange={(e) => this.setState({ orgao: e.target.value })} />
+                                    </div>
+                                    <div className="form-group col-md-1">
                                         <label className='la' for="inputEstado">UF*</label>
                                         <SelectMenu
                                             className="form-control"
@@ -282,6 +306,29 @@ class CadastrarServidor extends React.Component {
                                             onChange={(e) => this.setState({ uf: e.target.value })}
                                             lista={uf} />
                                     </div>
+                                    <div className="form-group col-md-6">
+
+                                    
+                                            <label className='la' for="inputEstado" style={{marginBottom:"7px"}}>Cargo em comissão?</label>
+
+                                            <input type='radio' id='mostrar' name='garantia' style={{marginRight:"2px"}} />
+                                            <label htmlFor="city2" style={{marginRight:"40px"}}>Sim</label>
+                                            <input type='radio' name='garantia'  style={{marginRight:"2px"}} />
+                                            <label htmlFor="city2">Não</label>
+                                      
+
+                                        <div className="form-group col-md-" id='mostrarC' >
+
+                                            <label className="la" htmlFor="range" >Descrição do cargo</label>
+
+                                            <input type="text"
+                                                className='form-control'
+                                                id="inputText"
+                                                value={this.state.cargoComissao}
+                                                onChange={(e) => this.setState({ cargoComissao: e.target.value })} />
+                                        </div>
+                                    </div>
+
                                     <div className="form-group col-md-3">
                                         <label className='la' for="inputPassword4">Data de Nascimento*</label>
                                         <input type="date" className="form-control" id="inputText" placeholder="Data de Nascimento"
@@ -352,8 +399,14 @@ class CadastrarServidor extends React.Component {
                                             onChange={(e) => this.setState({ cep: e.target.value })} />
                                     </div>
 
+                                    <div className="form-group col-md-6">
+                                        <label className='la' for="inputPassword4">Cidade*</label>
+                                        <input type="text" className="form-control" id="inputText" placeholder="Informe a cidade"
+                                            value={this.state.cidade}
+                                            onChange={(e) => this.setState({ cidade: e.target.value })} />
+                                    </div>
 
-                                    <div className="form-group">
+                                    <div className="form-group col-md-12">
                                         <label className='la' for="inputAddress">Endereço*</label>
                                         <input type="text" className="form-control" id="inputAddress"
                                             value={this.state.en}
@@ -394,4 +447,4 @@ class CadastrarServidor extends React.Component {
     }
 }
 
-export default withRouter( CadastrarServidor)
+export default withRouter(CadastrarServidor)
