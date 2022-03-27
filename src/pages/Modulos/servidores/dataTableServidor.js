@@ -10,18 +10,27 @@ export default props=>{
                 <td>{servidor.nome}</td>
                 <td>{servidor.cargo}</td>
                 <td>{servidor.matricula}</td>
-                <td>{servidor.cpf}</td>
+                <td>{servidor.ativo}</td>
                 <td>
-                    <button type="button" 
-                    className="btn btn-primary"
+                    <button type="button" title="Editar"
+                    className="btn btn-warning"
                     onClick={e=> props.editAction(servidor.id)}>
-                    Editar</button>
+                    <i className="pi pi-pencil"></i>
+                    </button>
 
 
-                    <button type="button" 
-                    className="btn btn-primary"
+                    <button type="button" title="Ativar"
+                    className="btn btn-success"
+                    onClick={e=>props.enableAction(servidor)}>
+                      <i className="pi pi-check"></i>
+                      </button>
+
+                    <button type="button" title="Desativar" 
+                    className="btn btn-danger"
                     onClick={e=>props.disableAction(servidor)}>
-                        Desativar</button>
+                        <i className="pi pi-times"></i>
+                    </button>
+
                 </td>
 
             </tr>
@@ -40,7 +49,7 @@ export default props=>{
                     <th scope="col">Nome</th>
                     <th scope="col">Cargo</th>
                     <th scope="col">Matricula</th>
-                    <th scope="col">CPF</th>
+                    <th scope="col">Situação</th>
                     <th scope="col">Ações</th>
                 </tr>
             </thead>

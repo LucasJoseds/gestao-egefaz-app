@@ -91,12 +91,6 @@ class CadastrarServidor extends React.Component {
 
         }
 
-        if (!this.state.naturalidade) {
-
-            msg.push('O cpf deve ser informado')
-
-        }
-
 
         return msg;
     }
@@ -221,8 +215,8 @@ class CadastrarServidor extends React.Component {
         const lotacao = [
             { label: "", value: "" },
             { label: "Diretoria da  Escola Fazendária", value: "Diretoria da  Escola Fazendária" },
-            { label: "Gerência de administração e logística", value: "Gerência de administração e logística" },
-            { label: "Gerência de programação, capacitação e educação", value: "Gerência de programação, capacitação e educação" }
+            { label: "Gerência de Administração e Logística", value: "Gerência de Administração e Logística" },
+            { label: "Gerência de Programação, Capacitação e Educação", value: "Gerência de Programação, Capacitação e educação" }
         ]
         const estadoCivil = [
             { label: "", value: "" },
