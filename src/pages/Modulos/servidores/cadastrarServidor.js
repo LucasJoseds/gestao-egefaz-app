@@ -213,13 +213,13 @@ class CadastrarServidor extends React.Component {
             { label: "Outros", value: "OUTROS" }
         ]
         const lotacao = [
-            { label: "", value: "" },
+            { label: "Selecione", value: "" },
             { label: "Diretoria da  Escola Fazendária", value: "Diretoria da  Escola Fazendária" },
             { label: "Gerência de Administração e Logística", value: "Gerência de Administração e Logística" },
             { label: "Gerência de Programação, Capacitação e Educação", value: "Gerência de Programação, Capacitação e educação" }
         ]
         const estadoCivil = [
-            { label: "", value: "" },
+            { label: "Selecione", value: "" },
             { label: "Solteiro(a)", value: "Solteiro(a)" },
             { label: "Casado(a)", value: "Casado(a)" },
             { label: "Viuvo(a)", value: "Viuvo(a)" },
@@ -287,7 +287,7 @@ class CadastrarServidor extends React.Component {
                                     </div>
                                     <div className="form-group col-md-2">
                                         <label className='la' for="inputPassword4">OE*</label>
-                                        <input type="text" className="form-control" placeholder="Orgão do expedidor"
+                                        <input type="text" className="form-control" placeholder="Orgão exp."
                                             value={this.state.orgao}
                                             onChange={(e) => this.setState({ orgao: e.target.value })} />
                                     </div>
@@ -303,7 +303,7 @@ class CadastrarServidor extends React.Component {
                                     <div className="form-group col-md-6">
 
                                     
-                                            <label className='la' for="inputEstado" style={{marginBottom:"7px"}}>Cargo em comissão?</label>
+                                            <label className='la' for="inputEstado" style={{marginBottom:"7px"}}>Cargo em Comissão?</label>
 
                                             <input type='radio' id='mostrar' name='garantia' style={{marginRight:"2px"}} />
                                             <label htmlFor="city2" style={{marginRight:"40px"}}>Sim</label>
@@ -311,11 +311,12 @@ class CadastrarServidor extends React.Component {
                                             <label htmlFor="city2">Não</label>
                                       
 
-                                        <div className="form-group col-md-" id='mostrarC' >
+                                        <div className="form-group col-md-12" id='mostrarC' >
 
                                             <label className="la" htmlFor="range" >Descrição do cargo</label>
 
                                             <input type="text"
+                                                style={{width:"204%"}}
                                                 className='form-control'
                                                 id="inputText"
                                                 value={this.state.cargoComissao}
@@ -330,7 +331,7 @@ class CadastrarServidor extends React.Component {
                                             onChange={(e) => this.setState({ dataNascimento: e.target.value })} />
                                     </div>
                                     <div className="form-group col-md-3">
-                                        <label className='la' for="inputPassword4">Estado civíl*</label>
+                                        <label className='la' for="inputPassword4">Estado Civil*</label>
                                         <SelectMenu
                                             className="form-control"
                                             id="inputSexo"

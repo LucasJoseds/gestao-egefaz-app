@@ -22,7 +22,7 @@ export default props=>{
                     <button type="button" title="Ativar"
                     className="btn btn-success"
                     onClick={e=>props.enableAction(servidor)}>
-                      <i className="pi pi-check"></i>
+                      <i className="pi pi-power-off"></i>
                       </button>
 
                     <button type="button" title="Desativar" 
