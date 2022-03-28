@@ -223,7 +223,7 @@ class CadastrarServidor extends React.Component {
             { label: "Solteiro(a)", value: "Solteiro(a)" },
             { label: "Casado(a)", value: "Casado(a)" },
             { label: "Viuvo(a)", value: "Viuvo(a)" },
-            { label: "Separado(a)", value: "Separado(a)" }
+            { label: "Divorciado(a)", value: "Divorciado(a)" }
         ]
         return (
             <div className="container-fluid" style={{ marginBottom: '10%' }}>

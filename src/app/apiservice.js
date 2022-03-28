@@ -3,7 +3,7 @@
 import axios from 'axios'
 
 export const httpClient = axios.create({
-    baseURL: 'https://egefaz-api1.herokuapp.com'
+    baseURL: 'http://localhost:8080'
 }
 )
 
@@ -26,6 +26,11 @@ class ApiService {
         return httpClient.get(requestUrl)
     }
 
+    patch(url){
+        const requestUrl = `${this.apiurl}${url}`
+        return httpClient.patch(requestUrl)
+    }
+    
     delete(url) {
         const requestUrl = `${this.apiurl}${url}`
         return httpClient.delete(requestUrl)

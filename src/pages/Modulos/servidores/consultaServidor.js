@@ -5,6 +5,9 @@ import { withRouter } from 'react-router-dom'
 import DataTableServidor from './dataTableServidor';
 import FormGroup from '../../../components/form-group';
 
+import { Dialog } from 'primereact/dialog'
+import { Button } from 'primereact/button'
+
 import "../modulos.css"
 
 
@@ -14,7 +17,9 @@ import "../modulos.css"
     state = {
         nome: '',
         matricula: '',
-        servidores: []
+        mensagem:false,
+        servidores: [],
+        situ:''
     }
 
     constructor() {
@@ -40,11 +45,80 @@ import "../modulos.css"
 
     }
 
+    desativarServidor=(servidor,situacao)=>{
+
+        this.service.desativar(servidor.id, situacao)
+        .then(response =>{
+            const servidores = this.state.servidores;
+            const index = servidores.indexOf(servidor);
+            if(index!==-1){
+
+                servidor['situ'] = situacao;
+                servidores[index]= servidor;
+                this.setState({servidor})
+            }
+            succesMessage('Servidor desativado com sucesso')
+        })
+
+    }
+
+    
+    showMessage = (servidores) => {
+        this.setState({ mensagem: true, ativarServidor: servidores })
+
+    }
+    
+    deletar = () => {
+
+        this.service.deletar(this.state.deletarFolga.id)
+            .then(response => {
+                const folgas = this.state.folgas
+                const index = folgas.indexOf(this.state.deletarFolga)
+                folgas.splice(index, 1);
+                this.setState(folgas)
+
+                succesMessage('Folga deletada com sucesso')
+                this.cancelarDeletar();
+            }).catch(error => {
+                errorMessage('Erro ao deletar folga')
+            })
+
+    }
+    
+    ativarServidor=(servidor,situ)=>{
+
+        this.service.desativar(this.state.ativarServidor.id, situ)
+        .then(response =>{
+            const servidores = this.state.servidores;
+            const index = servidores.indexOf(servidor);
+            if(index!==-1){
+
+                servidor['situ'] = situ;
+                servidores[index]= servidor;
+                this.setState({servidor})
+            }
+            succesMessage('Servidor ativado com sucesso')
+            this.cancelarDeletar();
+        })
+
+    }
+
+    cancelarDeletar =()=>{
+
+        this.setState({ mensagem: false, ativarServidor: {} })
+    }
+
+
+
+
+
+
+
     deletar = (servidor) => {
 
         this.service.deletar(servidor.id)
             .then(response => {
-                const servidores = this.state.servidores
+                const servidores = this.state.servidores;
                 const index = servidores.indexOf(servidor)
                 servidores.splice(index, 1);
                 this.setState(servidores)
@@ -63,6 +137,17 @@ import "../modulos.css"
 
     render() {
 
+        const confirmar = (
+
+            <div>
+
+                <Button label = "Confirmar" icon="pi pi-check" onClick={this.ativarServidor}/>
+
+                <Button label ="Cancelar" icon="pi pi-times" onClick={this.cancelarDeletar} 
+                className="p-button-secondary" />
+                
+            </div>
+            );
 
         return (
 
@@ -115,7 +200,8 @@ import "../modulos.css"
                                 <DataTableServidor
                                     servidores={this.state.servidores}
                                     editAction={this.editar}
-                                    deleteAction={this.deletar} />
+                                    enableAction={this.ativarServidor}
+                                    disableAction={this.desativarServidor}/>
 
                             </div>
                         </div>

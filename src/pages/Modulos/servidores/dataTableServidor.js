@@ -10,7 +10,7 @@ export default props=>{
                 <td>{servidor.nome}</td>
                 <td>{servidor.cargo}</td>
                 <td>{servidor.matricula}</td>
-                <td>{servidor.ativo}</td>
+                <td>{servidor.situ}</td>
                 <td>
                     <button type="button" title="Editar"
                     className="btn btn-warning"
@@ -21,13 +21,13 @@ export default props=>{
 
                     <button type="button" title="Ativar"
                     className="btn btn-success"
-                    onClick={e=>props.enableAction(servidor)}>
+                    onClick={e=>props.enableAction(servidor, "Ativado")}>
                       <i className="pi pi-power-off"></i>
                       </button>
 
                     <button type="button" title="Desativar" 
                     className="btn btn-danger"
-                    onClick={e=>props.disableAction(servidor)}>
+                    onClick={e=>props.disableAction(servidor,"Desativado")}>
                         <i className="pi pi-times"></i>
                     </button>
 
@@ -49,7 +49,7 @@ export default props=>{
                     <th scope="col">Nome</th>
                     <th scope="col">Cargo</th>
                     <th scope="col">Matricula</th>
-                    <th scope="col">Situação</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Ações</th>
                 </tr>
             </thead>

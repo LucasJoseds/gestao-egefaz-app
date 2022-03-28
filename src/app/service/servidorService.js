@@ -14,9 +14,9 @@ class ServidorService extends ApiService {
         return this.get(`${id}`)
     }
 
-    desativar =()=>{
+    desativar(id,situ){
 
-        
+        return this.put(`disable/${id}`,{ situ })
     }
 
     solicitarFolga(id,servidor){

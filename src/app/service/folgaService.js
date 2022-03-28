@@ -18,6 +18,11 @@ class FolgaService  extends ApiService{
         return this.get(`${id}`);
     }
 
+    desativar(id){
+
+        return this.put(`${id}`)
+    }
+
     
 
     consulta(filtrarFolga){
