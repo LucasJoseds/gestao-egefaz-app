@@ -87,7 +87,7 @@ import "../modulos.css"
     
     ativarServidor=(servidor,situ)=>{
 
-        this.service.desativar(this.state.ativarServidor.id, situ)
+        this.service.desativar(servidor.id, situ)
         .then(response =>{
             const servidores = this.state.servidores;
             const index = servidores.indexOf(servidor);

@@ -23,23 +23,23 @@ class CadastrarServidor extends React.Component {
         identidade: '',
         orgao: '',
         sexo: '',
-        endereco: {
-            cep: '',
-            bairro: '',
-            en: '',
-            uf: ''
-        },
         civil: '',
         dataNascimento: '',
+     
+            
+            cep: '',
+            en: '',
+            bairro: '',
+            com: '',
+            uf: '',
+    
         conjuge: '',
         senha: '',
         naturalidade: '',
         nacionalidade: '',
         cidade:'',
         email: '',
-        telefone: '',
-        cargoComissao: ''
-
+        telefone: ''
     }
 
     constructor() {
@@ -53,14 +53,17 @@ class CadastrarServidor extends React.Component {
         const params = this.props.match.params
 
         if (params.id) {
+
             this.service.servidoresId(params.id)
                 .then(response => {
-                    this.setState({ ...response.data })
+                    this.setState({...response.data })
+                   
                 }).catch(error => {
                     errorMessage(error.response.data)
                 })
-        }
-
+                
+            }
+            
     }
 
     validar = () => {
@@ -124,11 +127,14 @@ class CadastrarServidor extends React.Component {
             nacionalidade: this.state.nacionalidade,
             naturalidade: this.state.naturalidade,
             dataNascimento: this.state.dataNascimento,
-            en: this.state.en,
-            cep: this.state.cep,
-            bairro: this.state.bairro,
-            com: this.state.com,
-            uf: this.state.uf,
+            endereco:{
+                cep: this.state.cep,
+                en: this.state.en,
+                bairro: this.state.bairro,
+                com: this.state.com,
+                uf: this.state.uf,
+            },
+
             sexo: this.state.sexo,
             civil: this.state.civil,
             telefone: this.state.telefone,
@@ -150,14 +156,16 @@ class CadastrarServidor extends React.Component {
                     identidade: '',
                     orgao: '',
                     sexo: '',
-                    endereco: '',
                     civil: '',
                     dataNascimento: '',
-                    en: '',
-                    cep: '',
-                    bairro: '',
-                    com: '',
-                    uf: '',
+                 
+                        
+                        cep: '',
+                        en: '',
+                        bairro: '',
+                        com: '',
+                        uf: '',
+                
                     conjuge: '',
                     senha: '',
                     naturalidade: '',
@@ -417,7 +425,7 @@ class CadastrarServidor extends React.Component {
                                         <label className='la' for="inputAddress2">Bairro</label>
                                         <input type="text" className="form-control" id="inputAddress2"
                                             value={this.state.bairro}
-                                            onChange={(e) => this.setState({ bairro: e.target.value })} />
+                                            onChange={(e) => this.setState({bairro: e.target.value })} />
                                     </div>
 
                                 </div>
