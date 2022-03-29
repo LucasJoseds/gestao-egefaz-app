@@ -13,6 +13,7 @@ export default props=>{
                 <td>{servidor.situ}</td>
                 <td>
                     <button type="button" title="Editar"
+
                     className="btn btn-warning"
                     onClick={e=> props.editAction(servidor.id)}>
                     <i className="pi pi-pencil"></i>
@@ -20,12 +21,14 @@ export default props=>{
 
 
                     <button type="button" title="Ativar"
+                    disabled={servidor.situ === "Ativado"}
                     className="btn btn-success"
                     onClick={e=>props.enableAction(servidor, "Ativado")}>
                       <i className="pi pi-power-off"></i>
                       </button>
 
                     <button type="button" title="Desativar" 
+                     disabled={servidor.situ === "Desativado"}
                     className="btn btn-danger"
                     onClick={e=>props.disableAction(servidor,"Desativado")}>
                         <i className="pi pi-times"></i>
