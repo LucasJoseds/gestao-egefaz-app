@@ -4,13 +4,9 @@ import { errorMessage, succesMessage } from '../../../components/toastr';
 import { withRouter } from 'react-router-dom'
 import DataTableServidor from './dataTableServidor';
 import FormGroup from '../../../components/form-group';
-import { ConfirmDialog } from 'primereact/confirmdialog'; // To use <ConfirmDialog> tag
-import { confirmDialog } from 'primereact/confirmdialog';
-
 
 import { Toast } from 'primereact/toast';
-import { Dialog } from 'primereact/dialog'
-import { Button } from 'primereact/button'
+
 
 import "../modulos.css"
 
@@ -33,10 +29,6 @@ class ConsultarServidor extends React.Component {
         
         super();
         this.service = new ServidorService();
-
-        this.accept = this.accept.bind(this);
-        this.reject = this.reject.bind(this);
-        this.confirm1 = this.confirm1.bind(this);
     }
 
     buscar = () => {
@@ -54,10 +46,6 @@ class ConsultarServidor extends React.Component {
                 console.log(error)
             })
 
-    }
-
-    showMessage = (servidores, situ) => {
-        this.setState({ mensagem: true, desativaServidor: servidores, situacao: situ })
     }
 
     desativarServidor = (servidor, situ) => {
@@ -98,16 +86,6 @@ class ConsultarServidor extends React.Component {
 
     }
 
-    cancelarDeletar = () => {
-
-        this.setState({ mensagem: false, ativarServidor: {} })
-    }
-
-
-
-
-
-
 
     deletar = (servidor) => {
 
@@ -125,42 +103,6 @@ class ConsultarServidor extends React.Component {
 
     }
 
-    accept() {
-
-     
-    this.desativarServidor = (servidor, situ) => {
-
-
-        this.service.desativar(servidor.id, situ)
-            .then(response => {
-                const servidores = this.state.servidores;
-                const index = servidores.indexOf(servidor);
-                if (index !== -1) {
-
-                    servidor['situ'] = situ;
-                    servidores[index] = servidor;
-                    this.setState({ servidor })
-                }
-                succesMessage('Servidor desativado com sucesso')
-                this.cancelarDeletar();
-            })
-
-    }
-    }
-
-    reject() {
-        this.toast.show({ severity: 'info', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
-    }
-
-    confirm1() {
-        confirmDialog({
-            message: 'Deseja realmente desativar este servidor',
-            header: 'Confirmação',
-            icon: 'pi pi-exclamation-triangle',
-            accept: this.desativarServidor,
-            reject: this.reject
-        });
-    }
 
     editar = (id) => {
 
@@ -168,8 +110,6 @@ class ConsultarServidor extends React.Component {
     }
 
     render() {
-
-      
 
 
         return (
@@ -226,21 +166,13 @@ class ConsultarServidor extends React.Component {
                                     servidores={this.state.servidores}
                                     editAction={this.editar}
                                     enableAction={this.ativarServidor}
-                                    disableAction={this.confirm1} />
+                                    disableAction={this.desativarServidor} />
 
                             </div>
                         </div>
                         <div>
 
-                            {/* <Dialog header="Atenção"
-                                visible={this.state.mensagem}
-                                style={{ width: '50vw' }}
-                                modal={true}
-                                footer={confirmar}
-                                onHide={() => this.setState({ mensagem: false })}>
-                                <p>Deseja realmente desativar este servidor?</p>
-                            </Dialog> */}
-
+                         
                            
 
                            

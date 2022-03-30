@@ -79,15 +79,16 @@ class CadastrarServidor extends React.Component {
 
         }
 
-        if (!this.state.matricula) {
-
-            msg.push('A matricula deve ser informada')
-
-        }
 
         if (!this.state.sexo) {
 
             msg.push('O sexo deve ser informado')
+
+        }
+
+        if (!this.state.cargo) {
+
+            msg.push('O cargo deve ser informado')
 
         }
 
@@ -124,11 +125,14 @@ class CadastrarServidor extends React.Component {
             nacionalidade: this.state.nacionalidade,
             naturalidade: this.state.naturalidade,
             dataNascimento: this.state.dataNascimento,
-            en: this.state.en,
-            cep: this.state.cep,
-            bairro: this.state.bairro,
-            com: this.state.com,
-            uf: this.state.uf,
+            endereco:{
+                
+                cep: this.state.cep,
+                en: this.state.en,
+                bairro: this.state.bairro,
+                com: this.state.com,
+                uf: this.state.uf,
+            },
             sexo: this.state.sexo,
             civil: this.state.civil,
             telefone: this.state.telefone,
@@ -167,7 +171,7 @@ class CadastrarServidor extends React.Component {
                     telefone: ''
                 })
             }).catch(
-                response => { errorMessage('Erro ao relizar o cadastro') }
+                error => { errorMessage(error.response.data) }
             )
 
     }
